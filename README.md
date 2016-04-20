@@ -15,7 +15,7 @@ ViewPager in iOS like witch in Android.
 
 - 3 initial methods.
 
-```
+```objective-c
 -(instancetype)initWithController:(UIViewController *)controller;
 -(instancetype)initWithController:(UIViewController *)controller inView:(UIView *)hostView;
 -(instancetype)initWithController:(UIViewController *)controller configView:(void(^)(UIView *hostView, UIView *pagerView))configBlock;
