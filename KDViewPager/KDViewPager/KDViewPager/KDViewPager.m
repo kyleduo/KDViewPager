@@ -105,6 +105,10 @@
 }
 
 -(void)setCurrentPage:(NSUInteger)currentPage {
+	[self setCurrentPage:currentPage animated:YES];
+}
+
+-(void)setCurrentPage:(NSUInteger)currentPage animated:(BOOL)animated {
 	NSUInteger count = [self.datasource numberOfPages:self];
 	if (count == 0) {
 		_currentPage = 0;
@@ -124,7 +128,7 @@
 		__weak typeof(self) weakSelf = self;
 		[_pager setViewControllers:viewControllers
 						 direction:forward ? UIPageViewControllerNavigationDirectionForward : UIPageViewControllerNavigationDirectionReverse
-						  animated:YES
+						  animated:animated
 						completion:^(BOOL finished) {
 							if (finished) {
 								_currentPage = currentPage;

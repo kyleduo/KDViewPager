@@ -49,7 +49,7 @@
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Uhp-m8-s40">
-                                <rect key="frame" x="0.0" y="527" width="185" height="73"/>
+                                <rect key="frame" x="0.0" y="527" width="222" height="73"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Bounces control" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jiv-OT-UHH">
                                         <rect key="frame" x="8" y="10" width="105" height="17"/>
@@ -61,7 +61,7 @@
                                         <rect key="frame" x="8" y="35" width="97" height="30"/>
                                         <state key="normal" title="Select index 2"/>
                                         <connections>
-                                            <action selector="mannuallySelect:" destination="BYZ-38-t0r" eventType="touchUpInside" id="7l9-mO-ljv"/>
+                                            <action selector="manuallySelect:" destination="BYZ-38-t0r" eventType="touchUpInside" id="OlE-KU-GYJ"/>
                                         </connections>
                                     </button>
                                     <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="V1G-lk-AAj">
@@ -70,21 +70,32 @@
                                             <action selector="controlBounce:" destination="BYZ-38-t0r" eventType="valueChanged" id="Y3b-Nr-ARB"/>
                                         </connections>
                                     </switch>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="T7m-VM-lOj">
+                                        <rect key="frame" x="121" y="35" width="93" height="30"/>
+                                        <state key="normal" title="No Animation">
+                                            <color key="titleColor" red="0.98431372549999996" green="0.45882352939999999" blue="0.25098039220000001" alpha="1" colorSpace="calibratedRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="manuallySelectWithoutAnimation:" destination="BYZ-38-t0r" eventType="touchUpInside" id="u58-mw-tzE"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstItem="Jiv-OT-UHH" firstAttribute="centerY" secondItem="V1G-lk-AAj" secondAttribute="centerY" id="Cez-yX-MZ4"/>
                                     <constraint firstItem="Jiv-OT-UHH" firstAttribute="leading" secondItem="Uhp-m8-s40" secondAttribute="leading" constant="8" id="Cxw-iP-twl"/>
+                                    <constraint firstItem="T7m-VM-lOj" firstAttribute="centerY" secondItem="dqf-zv-J45" secondAttribute="centerY" id="DNr-Mp-bPE"/>
                                     <constraint firstItem="dqf-zv-J45" firstAttribute="leading" secondItem="Uhp-m8-s40" secondAttribute="leading" constant="8" id="UG3-oE-M78"/>
-                                    <constraint firstAttribute="trailing" secondItem="V1G-lk-AAj" secondAttribute="trailing" constant="8" id="Xv1-5l-gt5"/>
+                                    <constraint firstItem="T7m-VM-lOj" firstAttribute="leading" secondItem="dqf-zv-J45" secondAttribute="trailing" constant="16" id="XmO-eV-a6f"/>
                                     <constraint firstItem="dqf-zv-J45" firstAttribute="top" secondItem="V1G-lk-AAj" secondAttribute="bottom" constant="1" id="asW-D8-ZCo"/>
                                     <constraint firstItem="V1G-lk-AAj" firstAttribute="top" secondItem="Uhp-m8-s40" secondAttribute="top" constant="3" id="ea1-f2-zun"/>
                                     <constraint firstItem="V1G-lk-AAj" firstAttribute="leading" secondItem="Jiv-OT-UHH" secondAttribute="trailing" constant="15" id="jbN-pW-HNj"/>
+                                    <constraint firstAttribute="trailing" secondItem="T7m-VM-lOj" secondAttribute="trailing" constant="8" id="qVY-fy-beG"/>
                                     <constraint firstAttribute="bottom" secondItem="dqf-zv-J45" secondAttribute="bottom" constant="8" id="tiY-88-ZbC"/>
                                 </constraints>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Current page index: " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EPX-kS-Jj2">
-                                <rect key="frame" x="452" y="553.5" width="132" height="17"/>
+                                <rect key="frame" x="452" y="553" width="132" height="17"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>

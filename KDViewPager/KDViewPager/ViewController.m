@@ -51,8 +51,11 @@
 		_pager.bounces = sw.isOn;
 	}
 }
-- (IBAction)mannuallySelect:(id)sender {
+- (IBAction)manuallySelect:(id)sender {
 	_pager.currentPage = 2;
+}
+- (IBAction)manuallySelectWithoutAnimation:(id)sender {
+	[_pager setCurrentPage:2 animated:NO];
 }
 
 #pragma mark - datasource

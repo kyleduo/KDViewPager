@@ -39,5 +39,6 @@
 -(instancetype)initWithController:(UIViewController *)controller configView:(void(^)(UIView *hostView, UIView *pagerView))configBlock;
 
 -(void)reload;
+-(void)setCurrentPage:(NSUInteger)currentPage animated:(BOOL)animated;
 
 @end
