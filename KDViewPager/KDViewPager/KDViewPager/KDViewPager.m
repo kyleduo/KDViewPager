@@ -21,21 +21,35 @@
 	return [self initWithController:controller inView:nil];
 }
 
+-(instancetype)initWithController:(UIViewController *)controller configView:(void(^)(UIView *hostView, UIView *pagerView))configBlock {
+	return [self initWithController:controller inView:nil configView:configBlock];
+}
+
 -(instancetype)initWithController:(UIViewController *)controller inView:(UIView *)hostView {
+	return [self initWithController:controller inView:hostView configView:^(UIView *hostView, UIView *pagerView) {
+		NSDictionary *dict = @{@"view":pagerView};
+		[pagerView setTranslatesAutoresizingMaskIntoConstraints:NO];
+		[hostView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[view]|" options:0 metrics:nil views:dict]];
+		[hostView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[view]|" options:0 metrics:nil views:dict]];
+	}];
+}
+
+
+-(instancetype)initWithController:(UIViewController *)controller inView:(UIView *)hostView configView:(void(^)(UIView *hostView, UIView *pagerView))configBlock {
 	self = [super init];
 	if (self) {
 		self.hostController = controller;
 		self.hostView = hostView ? hostView : self.hostController.view;
-		
-		[self commonInit];
+		[self commonInit:configBlock];
 	}
 	return self;
 }
 
+
 /**
  * Common method to initial view pager.
  */
--(void)commonInit {
+-(void)commonInit:(void(^)(UIView *, UIView *))configViewBlock {
 	NSDictionary *options = [NSDictionary dictionaryWithObject:[NSNumber numberWithInt:UIPageViewControllerSpineLocationMin]
 														forKey:UIPageViewControllerOptionSpineLocationKey];
 	_pager = [[UIPageViewController alloc] initWithTransitionStyle:UIPageViewControllerTransitionStyleScroll navigationOrientation:UIPageViewControllerNavigationOrientationHorizontal options:options];
@@ -54,10 +68,9 @@
 	[_pager didMoveToParentViewController:_hostController];
 	if (_hostView) {
 		[_hostView addSubview:_pager.view];
-		NSDictionary *dict = @{@"view":_pager.view};
-		[_pager.view setTranslatesAutoresizingMaskIntoConstraints:NO];
-		[_hostView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[view]|" options:0 metrics:nil views:dict]];
-		[_hostView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[view]|" options:0 metrics:nil views:dict]];
+		if (configViewBlock) {
+			configViewBlock(_hostView, _pager.view);
+		}
 	}
 	
 	// bounces is ON by default.
@@ -162,11 +175,16 @@
 }
 
 -(UIViewController *)controllerAtIndex:(NSUInteger)index {
+	NSUInteger count = [self.datasource numberOfPages:self];
 	UIViewController *cached = [self.viewControllers objectForKey:@(index)];
-	UIViewController *controller = [self.datasource kdViewPager:self controllerAtIndex:index cachedController:cached];
+	UIViewController *controller = nil;
 	
-	if (controller != nil) {
-		[self.viewControllers setObject:controller forKey:@(index)];
+	if (count > 0) {
+		controller = [self.datasource kdViewPager:self controllerAtIndex:index cachedController:cached];
+		
+		if (controller != nil) {
+			[self.viewControllers setObject:controller forKey:@(index)];
+		}
 	}
 	
 	return controller;

@@ -36,6 +36,7 @@
 
 -(instancetype)initWithController:(UIViewController *)controller;
 -(instancetype)initWithController:(UIViewController *)controller inView:(UIView *)hostView;
+-(instancetype)initWithController:(UIViewController *)controller configView:(void(^)(UIView *hostView, UIView *pagerView))configBlock;
 
 -(void)reload;
 

@@ -57,10 +57,10 @@
 
 #pragma mark - datasource
 -(UIViewController *)kdViewPager:(KDViewPager *)viewPager controllerAtIndex:(NSUInteger)index cachedController:(UIViewController *)cachedController {
-	if (cachedController == nil && _count != 0) {
+	if (cachedController == nil) {
 		cachedController = [[ContentViewController alloc] initWithIndex:index];
 	}
-	return _count == 0 ? nil : cachedController;
+	return cachedController;
 }
 
 -(NSUInteger)numberOfPages:(KDViewPager *)viewPager {
